@@ -1,0 +1,2 @@
+﻿src/app/api/users/[id]/route.ts(60,66): error TS2345: Argument of type '{ status: number; }' is not assignable to parameter of type 'number'.
+src/app/api/users/[id]/route.ts(100,106): error TS2559: Type '200' has no properties in common with type 'ResponseInit'.

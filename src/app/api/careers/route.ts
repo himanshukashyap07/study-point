@@ -1,0 +1,31 @@
+import { NextRequest } from "next/server";
+import { apiResponse } from "@/lib/apiResponse";
+import { apiError } from "@/lib/apiError";
+import dbConnect from "@/lib/DbConnect";
+import { Career } from "@/models/Career";
+import { getServerSession } from "next-auth/next";
+import { authOption } from "@/app/api/auth/[...nextauth]/options";
+
+export async function GET(req: NextRequest) {
+  try {
+    await dbConnect();
+    const careers = await Career.find({}).sort({ createdAt: -1 });
+    return apiResponse(careers, 200);
+  } catch (error: any) {
+    return apiError(error.message, 500);
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const session = await getServerSession(authOption);
+    if (!session || session.user.role !== "admin") return apiError("Unauthorized", 401);
+
+    await dbConnect();
+    const body = await req.json();
+    const career = await Career.create(body);
+    return apiResponse(career, 201);
+  } catch (error: any) {
+    return apiError(error.message, 500);
+  }
+}
