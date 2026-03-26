@@ -11,6 +11,9 @@ export default withAuth(
 
     if (isAuthPage) {
       if (isAuth) {
+        if (token?.role === "admin") {
+          return NextResponse.redirect(new URL("/admin", req.url));
+        }
         return NextResponse.redirect(new URL("/me", req.url));
       }
       return null;
@@ -22,7 +25,7 @@ export default withAuth(
 
     // Role-based auth for admin
     if (req.nextUrl.pathname.startsWith("/admin") && token?.role !== "admin") {
-      return NextResponse.redirect(new URL("/me", req.url));  
+      return NextResponse.redirect(new URL("/me", req.url));
     }
 
     return null;
