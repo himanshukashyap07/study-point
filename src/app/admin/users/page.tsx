@@ -53,8 +53,8 @@ export default function UsersManagement() {
   const filteredUsers = (users || []).filter(u => u.username?.toLowerCase().includes(search.toLowerCase()) || u.email?.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-black min-h-[500px]">
-      <h2 className="text-3xl font-extrabold mb-6">Users Management</h2>
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-8 text-black min-h-[500px]">
+      <h2 className="text-2xl md:text-3xl font-extrabold mb-6">Users Management</h2>
       <div className="mb-6 flex gap-4">
         <input
           type="text"

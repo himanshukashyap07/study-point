@@ -118,9 +118,9 @@ export default function CurriculumManager() {
   const courseVideos = videos.filter(v => v.courseId === selectedCourse?._id);
 
   return (
-    <div className="flex gap-6 h-[700px] text-black">
+    <div className="flex flex-col lg:flex-row gap-6 lg:h-[700px] text-black">
       {/* Left Sidebar Tree */}
-      <div className="w-1/3 border rounded-xl p-4 overflow-y-auto bg-white shadow-sm flex flex-col">
+      <div className="w-full lg:w-1/3 border rounded-xl p-4 overflow-y-auto bg-white shadow-sm flex flex-col min-h-[400px]">
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-bold text-lg text-black">Dynamic Tree</h3>
           <button onClick={handlePublish} disabled={publishing} className="bg-blue-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-blue-700 disabled:opacity-50 shadow">
@@ -187,7 +187,7 @@ export default function CurriculumManager() {
       </div>
 
       {/* Main Panel View */}
-      <div className="flex-1 border rounded-xl p-6 bg-white shadow-sm overflow-y-auto">
+      <div className="flex-1 border rounded-xl p-4 md:p-6 bg-white shadow-sm overflow-y-auto min-h-[400px]">
         {selectedCourse ? (
           <div className="animate-fade-in-up">
             <button onClick={() => setSelectedCourse(null)} className="text-blue-500 text-sm mb-4 font-semibold hover:underline">← Back to {selectedCategory}</button>

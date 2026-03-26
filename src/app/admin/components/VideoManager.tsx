@@ -72,10 +72,10 @@ export default function VideoManager() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto text-black">
-      <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-8">
+    <div className="max-w-4xl mx-auto text-black px-4">
+      <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-gray-100 mb-8">
         <div className="flex justify-between items-center mb-6">
-           <h2 className="text-2xl font-bold text-gray-800">{editingId ? "Edit Video" : "Add Video to Course"}</h2>
+           <h2 className="text-xl md:text-2xl font-bold text-gray-800">{editingId ? "Edit Video" : "Add Video to Course"}</h2>
            {editingId && <button onClick={() => {setEditingId(null); setFormData({...initialForm, courseId: formData.courseId});}} className="text-sm bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-lg font-bold">Cancel Edit</button>}
         </div>
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -150,8 +150,8 @@ export default function VideoManager() {
       </div>
 
       {formData.courseId && (
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-           <h3 className="text-xl font-bold mb-6">Course Videos ({videos.length})</h3>
+        <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+           <h3 className="text-lg md:text-xl font-bold mb-6">Course Videos ({videos.length})</h3>
            <div className="grid gap-3">
               {videos.map(v => (
                  <div key={v._id} className="border p-4 rounded-xl flex items-center justify-between hover:bg-gray-50 transition">

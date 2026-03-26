@@ -61,8 +61,8 @@ export default function AdminResults() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-black min-h-[500px]">
-      <h2 className="text-3xl font-extrabold mb-6">Student Results Management</h2>
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-8 text-black min-h-[500px]">
+      <h2 className="text-2xl md:text-3xl font-extrabold mb-6">Student Results Management</h2>
 
       {/* Create Form */}
       <form onSubmit={handleSubmit} className="mb-10 bg-gray-50 p-6 rounded-xl border flex flex-col gap-4">

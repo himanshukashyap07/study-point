@@ -6,7 +6,7 @@ import axios from "axios"
 import toast from "react-hot-toast"
 
 
-async function page() {
+function page() {
     const searchParams = useSearchParams()
     const secret = searchParams.get("secret")
     const email = searchParams.get("email")

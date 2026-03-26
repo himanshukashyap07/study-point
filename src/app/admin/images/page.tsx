@@ -66,9 +66,9 @@ export default function ImageManagement() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-black min-h-[500px]">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-extrabold">{editingId ? "Edit Image Section" : "Global Images UI"}</h2>
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-8 text-black min-h-[500px]">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <h2 className="text-2xl md:text-3xl font-extrabold">{editingId ? "Edit Image Section" : "Global Images UI"}</h2>
         {editingId && (
           <button onClick={() => { setEditingId(null); setFormData(emptyForm); }}
             className="text-sm bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg font-bold">

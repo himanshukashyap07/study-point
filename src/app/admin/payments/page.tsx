@@ -12,8 +12,8 @@ export default function PaymentsAndSales() {
    }, []);
 
    return (
-     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-black min-h-[500px]">
-       <h2 className="text-3xl font-extrabold mb-6">Payments & Sales Overview</h2>
+     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-8 text-black min-h-[500px]">
+       <h2 className="text-2xl md:text-3xl font-extrabold mb-6">Payments & Sales Overview</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl text-white shadow-lg">
              <h3 className="text-blue-100 font-bold mb-1">Total Sales</h3>
