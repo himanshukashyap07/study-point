@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 export const sendVerificationEmail = async (
   email: string,
   username: string,
-  secrete:string
+  secrete: string
 ): Promise<{ success: boolean; message: string }> => {
   try {
     const transporter = nodemailer.createTransport({
@@ -17,7 +17,7 @@ export const sendVerificationEmail = async (
       },
     });
 
-    
+
 
     const mailOptions = {
       from: `"Study Point" <${process.env.SMTP_USER || "noreply@studypoint.com"}>`,
@@ -29,7 +29,7 @@ export const sendVerificationEmail = async (
           <p>Hi <b>${username}</b>,</p>
           <p>Thank you for registering. Please verify your email address to access all features.</p>
           <div style="text-align: center; margin: 30px 0;">
-            <a href="${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/verifyEmail?secret=${secrete}&email=${email}" style="background-color: #4f46e5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            <a href="${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/verifyEmail?secret=${secrete}&email=${email}" style="background-color: #4f46e5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">
               Verify Email Address
             </a>
           </div>
