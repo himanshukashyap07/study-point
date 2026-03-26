@@ -1,24 +1,20 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, Suspense } from "react"
 import axios from "axios"
 import toast from "react-hot-toast"
 
 
-function page() {
+function VerifyEmailContent() {
     const searchParams = useSearchParams()
     const secret = searchParams.get("secret")
     const email = searchParams.get("email")
     const router = useRouter()
-    if (!secret || !email) {
-        return (
-            <div>
-                <h1>Invalid verification link</h1>
-            </div>
-        )
-    }
+
     useEffect(() => {
+        if (!secret || !email) return;
+
         async function handleVerifyEmail() {
             try {
                 const res = await axios.get(`/api/verifyEmail?email=${email}&secret=${secret}`)
@@ -37,7 +33,16 @@ function page() {
             }
         }
         handleVerifyEmail()
-    }, [])
+    }, [secret, email, router])
+
+    if (!secret || !email) {
+        return (
+            <div>
+                <h1>Invalid verification link</h1>
+            </div>
+        )
+    }
+
     return (
         <div>
             <h1>Verify</h1>
@@ -45,4 +50,10 @@ function page() {
     )
 }
 
-export default page
+export default function Page() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <VerifyEmailContent />
+        </Suspense>
+    )
+}

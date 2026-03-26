@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import CommentSection from "@/components/CommentSection";
 import axios from "axios";
 
-export default function PlayVideoPage() {
+function PlayVideoContent() {
   const { id } = useParams();
   const searchParams = useSearchParams();
   const videoId = searchParams.get("videoId");
@@ -98,4 +98,12 @@ export default function PlayVideoPage() {
       </div>
     </div>
   );
+}
+
+export default function PlayVideoPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen pt-24 pb-12 flex items-center justify-center"><div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600" /></div>}>
+        <PlayVideoContent />
+    </Suspense>
+  )
 }
