@@ -13,7 +13,7 @@ export default withAuth(
       if (isAuth) {
         return NextResponse.redirect(new URL("/me", req.url));
       }
-      return NextResponse.next();
+      return null;
     }
 
     if (!isAuth) {
@@ -22,12 +22,13 @@ export default withAuth(
 
     // Role-based auth for admin
     if (req.nextUrl.pathname.startsWith("/admin") && token?.role !== "admin") {
-      return NextResponse.redirect(new URL("/me", req.url));
+      return NextResponse.redirect(new URL("/me", req.url));  
     }
 
-    return NextResponse.next();
+    return null;
   },
   {
+    secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
       authorized() {
         return true;
