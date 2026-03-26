@@ -71,7 +71,7 @@ export async function POST(req: Request) {
       },
     };
 
-    return new Promise((resolve, reject) => {
+    return new Promise<Response>((resolve, reject) => {
       let response = "";
       const post_req = https.request(options, (post_res) => {
         post_res.on("data", (chunk) => {
