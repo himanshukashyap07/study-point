@@ -5,9 +5,12 @@ export default withAuth(
   function middleware(req) {
     const token = req.nextauth.token;
     const isAuth = !!token;
+
+    const { pathname } = req.nextUrl;
+
     const isAuthPage =
-      req.nextUrl.pathname.startsWith("/login") ||
-      req.nextUrl.pathname.startsWith("/register");
+      pathname.startsWith("/login") ||
+      pathname.startsWith("/register");
 
     if (isAuthPage) {
       if (isAuth) {
@@ -16,19 +19,25 @@ export default withAuth(
         }
         return NextResponse.redirect(new URL("/me", req.url));
       }
-      return null;
+      return NextResponse.next();
     }
-
     if (!isAuth) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
 
-    // Role-based auth for admin
-    if (req.nextUrl.pathname.startsWith("/admin") && token?.role !== "admin") {
+    if (token?.role === "admin") {
+      return NextResponse.next();
+    }
+
+    if (pathname.startsWith("/admin")) {
       return NextResponse.redirect(new URL("/me", req.url));
     }
 
-    return null;
+    if (!pathname.startsWith("/me")) {
+      return NextResponse.redirect(new URL("/me", req.url));
+    }
+
+    return NextResponse.next();
   },
   {
     secret: process.env.NEXTAUTH_SECRET,
